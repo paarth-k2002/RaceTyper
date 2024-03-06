@@ -15,20 +15,20 @@ const useCountdownTimer = (seconds: number) => {
   }, [setTimeLeft, hasTimerEnded, isRunning]);
 
   const resetCountdown = useCallback(() => {
-    clearInterval(intervalRef.current!);
+    clearInterval(intervalRef.current! as unknown as number);
     intervalRef.current = null;
     setTimeLeft(seconds);
   }, [seconds]);
 
   useEffect(() => {
     if (hasTimerEnded) {
-      clearInterval(intervalRef.current!);
+      clearInterval(intervalRef.current! as unknown as number);
       intervalRef.current = null;
     }
   }, [hasTimerEnded]);
 
   useEffect(() => {
-    return () => clearInterval(intervalRef.current!);
+    return () => clearInterval(intervalRef.current! as unknown as number);
   }, []);
 
   return { timeLeft, startCountdown, resetCountdown };
